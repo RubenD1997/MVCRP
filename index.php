@@ -6,6 +6,7 @@ use App\Middleware\Kernel;
 use App\Middleware\VerifyCsrfToken;
 use App\Middleware\VerifyJwtToken;
 use App\Middleware\VerifySession;
+use App\Middleware\RateLimiterMiddleware;
 
 
 $baseUri = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/');
@@ -31,6 +32,7 @@ $kernel = new Kernel([
     VerifyCsrfToken::class,
     VerifyJwtToken::class,
     VerifySession::class,
+    RateLimiterMiddleware::class
 ], $container);
 
 $blade = $container->make(Illuminate\View\Factory::class);
